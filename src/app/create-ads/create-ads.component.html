@@ -1,0 +1,77 @@
+<div class="create-ad-home">
+    <div class="first-section">
+        <div class="text-section">
+            <h2>{{ titleText }}</h2>
+            <br>
+            <h2 [innerHTML] = "titleTag"></h2>
+            <span class="google-signin" (click) = "onSignInWithGoogle()"><img src="../../assets/images/google-login.png" alt="google-login"></span>
+        </div>
+        <div class="image-section">
+            <img src="../../assets/images/banner-image.png" alt="banner-image">
+        </div>
+    </div>
+    <div class="ad-budget">
+        <h1 class="section-title" [innerHTML] = "budgetTitle"></h1>   
+        <table class="budget-item">
+            <tr>
+                <td class="item-key">AD BUDGET</td>
+                <td >
+                    <input [(ngModel)] = "adBudget" type="text" name="adbudget" id="adbudget" placeholder="Enter Your Budget" (ngModelChange) = "onValueChanged($event)">
+                </td>                
+            </tr>
+
+            <tr>
+                <td class="item-key">AD VIEWS</td>
+                <td>
+                    <input [(ngModel)] = "adViews" disabled>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item-key">CUSTOMERS</td>
+                <td>
+                    <input [(ngModel)] = "customers" disabled>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item-key">APP INSTALLS</td>
+                <td>
+                    <input [(ngModel)] = "appInstalls" disabled>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item-key">SIGNUP</td>
+                <td>
+                    <input [(ngModel)] = "signUp" disabled>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item-key">SALES</td>
+                <td>
+                    <input [(ngModel)] = "sales" disabled>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item-key">CALLS</td>
+                <td>
+                    <input [(ngModel)] = "calls" disabled>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    <div>
+        <h1 class="section-title">How It Works</h1>
+        <div class="how-it-works">
+            <div class="work-item" *ngFor = "let item of txtImage">
+                <h3>{{ item[0] }}</h3>
+                <img [src]= "item[1]" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="empty"></div>
+</div>

@@ -1,0 +1,29 @@
+@import "../styles.scss";
+
+.social-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 5px $base-color;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 1.3em 0;
+    
+    img {
+        height: 50px;
+    }
+}
+
+.copyright {
+    height: 40px;
+    display: flex;
+    font-size: larger;
+    justify-content: center;
+    align-items: center;
+    color: $base_color;
+    box-shadow: 0 2px 5px $base-color;
+    
+    a {
+        color: $base_color;
+    }
+}
