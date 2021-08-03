@@ -10,6 +10,11 @@ import { AppComponent } from './app.component';
 import { CreateAdsComponent } from './create-ads/create-ads.component';
 import { MenuComponent } from './menu/menu.component';
 import { PromoteAdsComponent } from './promote-ads/promote-ads.component';
+import { LoginMenuComponent } from './login-menu/login-menu.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CardComponent } from './card/card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule} from '@angular/material/card'; 
 
 const firebaseConfig = {
   apiKey: "AIzaSyDqEZbCiCpuWb1MkyWz9ckN3A0_RLHNsV4",
@@ -26,13 +31,18 @@ const firebaseConfig = {
     AppComponent,
     CreateAdsComponent,
     MenuComponent,
-    PromoteAdsComponent
+    PromoteAdsComponent,
+    LoginMenuComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
+    MatCardModule,
     AppRoutingModule,
     FormsModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    NgbModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

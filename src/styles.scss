@@ -21,3 +21,9 @@ $base-color: rgb(112, 112, 112);
     height: 3em !important;
 }
 
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
