@@ -1,15 +1,17 @@
+<app-menu></app-menu>
 <div class="create-ad-home">
     <div class="first-section">
         <div class="text-section">
             <h2>{{ titleText }}</h2>
             <br>
-            <h2 [innerHTML] = "titleTag"></h2>
+            <h2 [innerHTML] = "titleTag" style="text-align: center;"></h2>
             <span class="google-signin" (click) = "onSignInWithGoogle()"><img src="../../assets/images/google-login.png" alt="google-login"></span>
         </div>
         <div class="image-section">
             <img src="../../assets/images/promote banner.png" alt="banner-image">
         </div>
     </div>
+    <div class="empty"></div>
     <div class="ad-budget">
         <h1 class="section-title" [innerHTML] = "budgetTitle"></h1>   
         <table class="budget-item">
@@ -29,6 +31,7 @@
 
         </table>
     </div>
+    <div class="empty"></div>
     <div>
         <h1 class="section-title">How It Works</h1>
         <div class="how-it-works">

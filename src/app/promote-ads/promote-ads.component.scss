@@ -1,4 +1,4 @@
-@import "../../styles.scss";
+@import "../../colors.scss";
 
 .first-section {
     display: flex;
@@ -7,26 +7,7 @@
     box-shadow: 0 8px 6px -6px $base-color;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
-
-    .text-section {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        color: $base_color;
-        justify-content: center;
-        align-items: center;
-        font-weight: 400;
-        font-size: larger;
-
-        .google-signin {
-            margin-top: 2em;
-            cursor: pointer;
-
-            img {
-                max-width: 18em;
-            }
-        }
-    }
+    margin-bottom: 1em;
 
     .image-section{
         display: flex;
@@ -47,6 +28,7 @@
     box-shadow: 0 8px 6px -6px $base-color;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+    margin-bottom: 1em;
 
     h1 {
         margin-bottom: 1em;
@@ -86,6 +68,7 @@
     box-shadow: 0 8px 6px -6px $base-color;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+    margin-bottom: 1em !important;
 
     .work-item {
         width: 100%;

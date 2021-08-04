@@ -31,7 +31,7 @@ export class PromoteAdsComponent implements OnInit {
 
   constructor(private fireService: FireauthserviceService) { 
     this.titleText = "Earn More Money With Social Ads"
-    this.titleTag = `Promote Ads On Your<br> Website, YouTube, Instagram,<br> Facebook, Twitter, Etc...`;
+    this.titleTag = `Promote Ads On Your Website, <br>YouTube, Instagram, Facebook,<br>Twitter, Etc...`;
     this.budgetTitle = "EARNING FILTER";
   }
 

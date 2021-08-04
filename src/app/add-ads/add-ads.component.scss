@@ -1,0 +1,38 @@
+@import '~bootstrap/scss/bootstrap';
+@import "../../colors.scss";
+
+.add-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        height: 3em;
+        margin-top: 1em;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 15px;
+        border: 1px solid $base_color;
+    }
+}
+.col {
+    margin: 1em 0;
+}
+.add-ad {
+    border: 2px solid $base_color !important;
+    border-radius: 15px !important;
+    width: 300px;
+
+    .video, .title, .views {
+        border-bottom: 1px solid $base_color;
+    }
+    .video, .title, .views, .promote{
+        text-align: center;
+    }
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+}
+
