@@ -1,5 +1,7 @@
-@import "../../styles.scss";
-.add-ad {
+@import '~bootstrap/scss/bootstrap';
+@import "../../colors.scss";
+
+.add-image {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,5 +13,18 @@
         padding: 5px;
         border-radius: 15px;
         border: 1px solid $base_color;
+    }
+}
+.add-ad {
+    display: flex;
+    justify-content: space-around;
+    .card {
+        height: 300px;
+        width: 200px;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
     }
 }
