@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: "promote", component: PromoteAdsComponent},
   { path: "add-ad", component: AddAdsComponent},
   { path: "promote-ad", component: CardComponent},
-  {path: "card", component: CardComponent }
+  { path: "card", component: CardComponent }
 ];
 
 @NgModule({

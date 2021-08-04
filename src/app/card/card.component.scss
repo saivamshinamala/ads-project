@@ -48,9 +48,14 @@
     width: 300px;
 }
 
+
+h1, h2{
+    text-align: center;
+    margin: inherit;
+}
+
 hr{
     border-top: 2px solid rgb(209, 203, 203);
-    
 }
 
 .card img{
