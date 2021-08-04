@@ -15,16 +15,24 @@
         border: 1px solid $base_color;
     }
 }
+.col {
+    margin: 1em 0;
+}
 .add-ad {
-    display: flex;
-    justify-content: space-around;
-    .card {
-        height: 300px;
-        width: 200px;
+    border: 2px solid $base_color !important;
+    border-radius: 15px !important;
+    width: 300px;
 
-        img {
-            height: 100%;
-            width: 100%;
-        }
+    .video, .title, .views {
+        border-bottom: 1px solid $base_color;
+    }
+    .video, .title, .views, .promote{
+        text-align: center;
+    }
+
+    img {
+        height: 100%;
+        width: 100%;
     }
 }
+

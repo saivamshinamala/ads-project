@@ -2,23 +2,27 @@
 <div class="add-image">
     <img (click) = "onAddAd()" [src]= "plusImgPath" alt="image">
 </div>
-<div class="add-ad" *ngFor = "let item of adsArray">
-    <span *ngIf = "item.count % 3 == 0">
-        <div class="empty"></div>
-    </span>
-    <div *ngIf = "item.count % 3 != 0" class="card">
-        <div class="video">
-            <img [src]="item.adVideoPath" alt="">
-        </div>
-        <div class="title">
-            <p [innerHTML] = "item.adTitle"></p>
-        </div>
-        <div class="views">
-            <p [innerHTML] = "item.adTitle"></p>
-        </div>
-        <div class="promote">
-            <p [innerHTML] = "item.adTitle"></p>
-        </div>
 
+
+<div class="container">
+    <div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col" *ngFor = "let item of adsArray">
+                <div class="add-ad">
+                    <div class="video">
+                        <img [src]="item.adVideoPath" alt="">
+                    </div>
+                    <div class="title">
+                        <p [innerHTML] = "item.adTitle"></p>
+                    </div>
+                    <div class="views">
+                        <p [innerHTML] = "item.adViews"></p>
+                    </div>
+                    <div class="promote">
+                        <p [innerHTML] = "item.promote"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

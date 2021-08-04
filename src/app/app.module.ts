@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CardComponent } from './card/card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule} from '@angular/material/card';
+import { SampleComponent } from './sample/sample.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDhH0xx3RZVVJeY1t0BGumF15A6YHaiNHI",
@@ -35,7 +36,8 @@ const firebaseConfig = {
     PromoteAdsComponent,
     AddAdsComponent,
     LoginMenuComponent,
-    CardComponent
+    CardComponent,
+    SampleComponent
   ],
   imports: [
     BrowserModule,
