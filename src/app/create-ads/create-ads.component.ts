@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { FireauthserviceService } from '../services/fireauthservice.service';
-
 @Component({
   selector: 'app-create-ads',
   templateUrl: './create-ads.component.html',
@@ -29,7 +29,7 @@ export class CreateAdsComponent implements OnInit {
   ];
 
 
-  constructor(private fireService: FireauthserviceService) { 
+  constructor(private fireService: FireauthserviceService, private router: Router) { 
     this.titleText = "Grow Your Business With Social Ads"
     this.titleTag = `Get More Sales, Customers Views,<br>Sineup, Calls, App Installs, Etc...`;
     this.budgetTitle = "Low Ad Budget High Results";
@@ -47,7 +47,9 @@ export class CreateAdsComponent implements OnInit {
 
   onSignInWithGoogle() {
     const result = this.fireService.signInWithGoogle();
-    console.log(result);
+    result.then(() => {
+      this.router.navigateByUrl("add-ad");
+    });
   }
 
   onValueChanged(event:any) {
