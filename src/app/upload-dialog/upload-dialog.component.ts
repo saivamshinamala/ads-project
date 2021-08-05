@@ -8,6 +8,9 @@ import { SharedService } from '../services/shared.service';
 })
 export class UploadDialogComponent implements OnInit {
 
+  adViews!: number;
+  adBudget!: number;
+
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
@@ -15,6 +18,10 @@ export class UploadDialogComponent implements OnInit {
 
   onCreateAd() {
     this.sharedService.onAdCreated();
+  }
+
+  onValueChanged(event:number) {
+    this.adViews = event * 10;
   }
 
 }

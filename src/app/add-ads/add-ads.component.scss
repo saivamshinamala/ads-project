@@ -1,5 +1,34 @@
-@import '~bootstrap/scss/bootstrap';
 @import "../../colors.scss";
+
+nav {
+    position: relative;
+
+    span {
+        position: absolute;
+        margin-left: 85%;
+
+        img {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid $base_color;
+            border-radius: 60%;
+        }
+    }
+}
+
+.nav_links_class{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    align-items: center;
+    justify-content: space-around;
+    font-size: larger;
+    font-weight: 700;
+    height: 9vh;
+    box-shadow: 0 8px 6px -6px $base-color;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
 
 .add-image {
     display: flex;
@@ -26,8 +55,13 @@
     .video, .title, .views {
         border-bottom: 1px solid $base_color;
     }
-    .video, .title, .views, .promote{
+    .video, .title, .views, .promote, .delete{
         text-align: center;
+
+        p {
+            margin:  10px 0px;
+            text-align: center;
+        }
     }
 
     img {
@@ -40,3 +74,21 @@
     min-height: 92vh;
 }
 
+.promote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    span {
+        display: block;
+        position: absolute;
+        margin-left: 80%;
+        cursor: pointer;
+    }
+}
+
+.delete {
+    border-top: 1px solid $base_color;
+}

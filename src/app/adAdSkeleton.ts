@@ -3,4 +3,5 @@ export interface AdAdSkeleton {
     adTitle: any;
     adViews: any;
     promote: any;
+    displayDelete: any;
 }
