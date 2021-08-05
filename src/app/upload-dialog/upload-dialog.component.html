@@ -4,19 +4,19 @@
         <h4>UPLOAD AD VIDEO OR PHOTO</h4>
     </div>
     <div class="adTitle">
-        <p>Add Title</p>
+        <input type="text" name="adTitle" placeholder= "Ad Title">
     </div>
     <div class="adLink">
-        <p>Add Link</p>
+        <input type="text" name="adTitle" placeholder= "Ad Link">
     </div>
     <div class="adLanguage">
         <p>Language</p>
     </div>
-    <div class="adRupees">
-        <p>100000</p>
+    <div class="adViews">
+        <input [(ngModel)] = "adViews" disabled placeholder="Ad Views">
     </div>
     <div class="adBudget">
-        <p>10000</p>
+        <input [(ngModel)] = "adBudget" type="text" name="adbudget" id="budget" placeholder="Enter Your Budget" (ngModelChange) = "onValueChanged($event)">
     </div>
     <div class="createAd" (click) = "onCreateAd()">
         <h3>CREATE AD</h3>

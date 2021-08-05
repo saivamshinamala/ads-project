@@ -15,7 +15,7 @@
     }
 }
 
-.adTitle, .adLink, .adLanguage, .adRupees, .adBudget, .createAd {
+.adTitle, .adLink, .adLanguage, .adViews, .adBudget, .createAd {
     text-align: center;
     padding-top: 3px;
     display: flex;
@@ -23,10 +23,19 @@
     align-items: center;
 }
 
-.adTitle, .adLink, .adLanguage, .adRupees, .adBudget {
+.adTitle, .adLink, .adLanguage, .adViews, .adBudget {
     border-bottom: 1px solid $base_color;
 }
 
 .createAd {
     cursor: pointer;
+}
+
+input {
+    text-align: center;
+    margin: 5px 0;
+}
+
+input:focus {
+    outline: none;
 }

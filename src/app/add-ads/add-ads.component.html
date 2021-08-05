@@ -1,4 +1,11 @@
-<app-menu></app-menu>
+<nav>
+    <ul class= "nav_links_class">
+        <li>SOCIAL ADS</li>
+        <span class="material-icons">
+            <img src="../../assets/images/Icon awesome-female.png" alt="">
+        </span>
+    </ul>
+</nav>
 <div class="add-image">
     <img (click) = "onPlusClicked()" [src]= "plusImgPath" alt="image">
 </div>
@@ -6,7 +13,7 @@
 
 <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col" *ngFor = "let item of adsArray">
+        <div class="col" *ngFor = "let item of adsArray; let ind = index">
             <div class="add-ad">
                 <div class="video">
                     <img [src]="item.adVideoPath" alt="">
@@ -19,6 +26,12 @@
                 </div>
                 <div class="promote">
                     <p [innerHTML] = "item.promote"></p>
+                    <span class="material-icons" (click) = "onThreeDotsClicked(ind)">
+                        more_vert
+                    </span>
+                </div>
+                <div *ngIf = "item.displayDelete" class="delete">
+                    <p>DELETE</p>
                 </div>
             </div>
         </div>
