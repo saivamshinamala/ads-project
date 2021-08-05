@@ -1,0 +1,32 @@
+@import "../../colors.scss";
+.mat-dialog-container {
+    box-shadow: none;
+    background: white;
+    color: black;
+}
+
+.upload-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img {
+        margin-bottom: 1em;
+    }
+}
+
+.adTitle, .adLink, .adLanguage, .adRupees, .adBudget, .createAd {
+    text-align: center;
+    padding-top: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.adTitle, .adLink, .adLanguage, .adRupees, .adBudget {
+    border-bottom: 1px solid $base_color;
+}
+
+.createAd {
+    cursor: pointer;
+}

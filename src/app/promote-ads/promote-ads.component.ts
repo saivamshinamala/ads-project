@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FireauthserviceService } from '../services/fireauthservice.service';
 
 @Component({
@@ -29,7 +30,7 @@ export class PromoteAdsComponent implements OnInit {
     ["../../assets/images/linkedin.png", "https://www.linkedin.com/in/aads-646b4a218/"],
   ]
 
-  constructor(private fireService: FireauthserviceService) { 
+  constructor(private fireService: FireauthserviceService, private router: Router) { 
     this.titleText = "Earn More Money With Social Ads"
     this.titleTag = `Promote Ads On Your Website, <br>YouTube, Instagram, Facebook,<br>Twitter, Etc...`;
     this.budgetTitle = "EARNING FILTER";
@@ -40,7 +41,9 @@ export class PromoteAdsComponent implements OnInit {
 
   onSignInWithGoogle() {
     const result = this.fireService.signInWithGoogle();
-    console.log(result);
+    result.then( () => {
+      this.router.navigateByUrl("card");
+    });
   }
 
   onValueChanged(event:any) {
