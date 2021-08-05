@@ -17,6 +17,8 @@ import { CardComponent } from './card/card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule} from '@angular/material/card';
 import { SampleComponent } from './sample/sample.component';
+import { UploadDialogComponent } from './upload-dialog/upload-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDhH0xx3RZVVJeY1t0BGumF15A6YHaiNHI",
@@ -37,7 +39,8 @@ const firebaseConfig = {
     AddAdsComponent,
     LoginMenuComponent,
     CardComponent,
-    SampleComponent
+    SampleComponent,
+    UploadDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ const firebaseConfig = {
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,7 +13,7 @@ export class FireauthserviceService {
 
 
   async signInWithGoogle() {
-    return this.afAuth.signInWithPopup(new auth.auth.GoogleAuthProvider);
+    return await this.afAuth.signInWithPopup(new auth.auth.GoogleAuthProvider);
   }
 
   async signOut() {
