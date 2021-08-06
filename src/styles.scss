@@ -46,3 +46,7 @@
 .mat-dialog-container {
     background: white;
 }
+
+input:focus {
+    outline: none;
+}

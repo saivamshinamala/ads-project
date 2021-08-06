@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AdAdSkeleton } from '../adAdSkeleton';
 
 import { MatDialog } from '@angular/material/dialog';
@@ -19,13 +19,14 @@ export class AddAdsComponent implements OnInit {
 
 
   constructor(private dialog: MatDialog, 
-              private sharedService: SharedService, 
-              private renderer: Renderer2) { }
+              private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.sharedService.destEvent$.subscribe(data => {
       this.onAddAd();
     });
+    this.onAddAd();
+    this.onAddAd();
     this.onAddAd();
   }
 
@@ -34,8 +35,9 @@ export class AddAdsComponent implements OnInit {
       adTitle: "Title",
       adVideoPath: "../../assets/images/create.png",
       promote: "PROMOTE",
-      adViews: 10000,
-      displayDelete: false
+      adBudget: 10000,
+      displayDelete: false,
+      displayPromote: false
     };
     this.adsArray.push(adObject);
     this.dialog.closeAll();
@@ -47,6 +49,15 @@ export class AddAdsComponent implements OnInit {
 
   onThreeDotsClicked(index: number) {
     this.adsArray[index].displayDelete = !this.adsArray[index].displayDelete;
+  }
+
+  toggleBudgetPromote(index: number) {
+    this.adsArray[index].displayPromote = !this.adsArray[index].displayPromote;
+    this.adsArray[index].displayDelete = false;
+  }
+
+  convertNumToInr(num: any) {
+    return this.sharedService.convertNumToInr(num);
   }
 
 }

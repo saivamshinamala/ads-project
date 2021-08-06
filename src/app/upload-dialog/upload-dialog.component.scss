@@ -3,6 +3,13 @@
     box-shadow: none;
     background: white;
     color: black;
+    height: 460px;
+}
+
+.close {
+    height: 25px;
+    transform: rotate(45deg) !important;
+    cursor: pointer;
 }
 
 .upload-image {
@@ -38,4 +45,38 @@ input {
 
 input:focus {
     outline: none;
+}
+
+.adLanguage {
+    cursor: pointer;
+}
+
+.arrow {
+    display: flex;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: -3px;
+
+    span {
+        position: absolute;
+        margin-left: 160%;
+        margin-top: -2px;
+    }
+}
+
+.p-lang {
+    text-align: center;
+    padding: 3.5px;
+    cursor: pointer;
+}
+
+.rotateArrow {
+    transform: rotate(180deg);
+    transition: 0.3s all ease-in-out;
+}
+
+.btn-danger {
+    padding: 5px;
+    margin-top: 3px;
+    margin-bottom: -3px;
 }

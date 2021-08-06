@@ -1,9 +1,13 @@
 <nav>
     <ul class= "nav_links_class">
         <li>SOCIAL ADS</li>
-        <span class="material-icons">
-            <img src="../../assets/images/Icon awesome-female.png" alt="">
-        </span>
+        <div ngbDropdown>
+            <img src = "../../assets/images/Icon awesome-female.png" id="dropdownBasic1" ngbDropdownToggle>
+            <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <li class = "border-bottom" ngbDropdownItem>Name</li>
+                <li ngbDropdownItem>Logout</li>
+            </ul>
+        </div>
     </ul>
 </nav>
 <div class="add-image">
@@ -14,23 +18,23 @@
 <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" *ngFor = "let item of adsArray; let ind = index">
-            <div class="add-ad">
+            <div class="card shadow-sm">
                 <div class="video">
                     <img [src]="item.adVideoPath" alt="">
                 </div>
                 <div class="title">
                     <p [innerHTML] = "item.adTitle"></p>
                 </div>
-                <div class="views">
-                    <p [innerHTML] = "item.adViews"></p>
+                <div class="budget">
+                    <p *ngIf = "!item.displayPromote" (click) = "toggleBudgetPromote(ind)" [innerHTML] = "convertNumToInr(item.adBudget)"></p>
+                    <div *ngIf = "item.displayPromote" class="promote">
+                        <p (click) = "toggleBudgetPromote(ind)" [innerHTML] = "item.promote"></p>
+                        <span class="material-icons" (click) = "onThreeDotsClicked(ind)">
+                            more_vert
+                        </span>
+                    </div>
                 </div>
-                <div class="promote">
-                    <p [innerHTML] = "item.promote"></p>
-                    <span class="material-icons" (click) = "onThreeDotsClicked(ind)">
-                        more_vert
-                    </span>
-                </div>
-                <div *ngIf = "item.displayDelete" class="delete">
+                <div *ngIf = "item.displayDelete && item.displayPromote" class="delete">
                     <p>DELETE</p>
                 </div>
             </div>

@@ -15,4 +15,18 @@ export class SharedService {
   onAdCreated() {
     this.sourceEvent.next();
   }
+
+  convertNum(num: any) {
+    num = num.toString();
+    let lastThree = num.substring(num.length - 3);
+    let otherNumbers = num.substring(0, num.length - 3);
+    if(otherNumbers != '')
+        lastThree = ',' + lastThree;
+    let inr = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+    return inr;
+  }
+
+  convertNumToInr(num: any) {
+    return "₹" + this.convertNum(num);
+  }
 }

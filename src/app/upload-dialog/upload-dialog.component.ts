@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { SharedService } from '../services/shared.service';
 
 @Component({
@@ -8,10 +9,14 @@ import { SharedService } from '../services/shared.service';
 })
 export class UploadDialogComponent implements OnInit {
 
-  adViews!: number;
-  adBudget!: number;
+  adViews!: any;
+  adBudget!: any;
+  language = ["ENGLISH", "HINDI", "TELUGU"];
+  languageClicked = false;
 
-  constructor(private sharedService: SharedService) { }
+  constructor(private sharedService: SharedService, 
+              private dialog: MatDialogRef<UploadDialogComponent>,
+              private renderer: Renderer2) { }
 
   ngOnInit(): void {
   }
@@ -22,6 +27,21 @@ export class UploadDialogComponent implements OnInit {
 
   onValueChanged(event:number) {
     this.adViews = event * 10;
+    this.adViews = this.sharedService.convertNum(this.adViews);
+  }
+
+  closeDialog() {
+    this.dialog.close();
+  }
+
+  chooseLanguage(event?: any) {
+    this.languageClicked = !this.languageClicked;
+    document.querySelector(".material-icons")?.classList.toggle("rotateArrow");
+  }
+
+  onLangSelect(index: any) {
+    console.log(index);
+    this.chooseLanguage();
   }
 
 }
