@@ -5,11 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
+
 export class CardComponent implements OnInit {
-
-  constructor() { }
-
+  pop: any;
+  constructor() {
+  }
   ngOnInit(): void {
   }
-
+  popUP(){
+    this.pop=<HTMLDivElement>document.getElementById("popup-1");
+    this.pop.classList.toggle("active");
+  }
 }

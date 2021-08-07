@@ -1,33 +1,28 @@
-<!-- <div class="row">
 <app-login-menu></app-login-menu>
-<div class="row">
-	<div class="card px-6 py-5">
-        <button type="button" class="btn">
-			Video <img src="../../assets/images/Icon awesome-play.png" class="btn mb-2">
-		</button>
-        <hr>
-		<button type="button" class="btn">
-			Copy Link
-		</button>
-        <hr>
-        <button type="button" class="btn">
-			Paste Link
-		</button>
-        <hr>
-        <button type="button" class="btn act">
-			ACTIVATED <img src="../../assets/images/Image 5.png">
-		</button>
+
+<div class="container">
+    <div class="card">
+        <div class="upload-video">
+            <img src="../../assets/images/create.png" alt="Play">
+            <span (click)="popUP()" class="video-thumbnail"></span>
+        </div>
+        <div (click)="popUP()" class="copyLink">
+            <h3><b>COPY LINK</b></h3>
+        </div>
+        <div (click)="popUP()" class="pasteLink">
+            <h3><b>PASTE LINK</b></h3>
+        </div>
+        <div class="activated">
+            <h2 style="color: rgb(42, 185, 42);"><b>ACTIVATED</b></h2> 
+        </div>
     </div>
-</div> -->
-<app-login-menu></app-login-menu>
-<div class="card video-thumbnail">
-	<img src="../../assets/images/create.png" alt="Play">
-	<div class="container">
-		<hr>
-		<h2><b>COPY LINK</b></h2>
-		<hr> 
-		<h2><b>PASTE LINK</b></h2>
-		<hr>
-		<h1 style="color: rgb(42, 185, 42);"><b>ACTIVATED</b></h1> 
-	</div>
+</div>
+
+<div class="popup" id="popup-1">
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="close-btn" (click)="popUP()">×</div>
+      <h2><b>COPY LINK</b></h2>
+      <p>...........................................................</p>
+    </div>
 </div>
