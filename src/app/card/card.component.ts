@@ -12,8 +12,16 @@ export class CardComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  popUP(){
-    this.pop=<HTMLDivElement>document.getElementById("popup-1");
+  video(){
+    this.pop=<HTMLDivElement>document.getElementById("video");
+    this.pop.classList.toggle("active");
+  }
+  copy(){
+    this.pop=<HTMLDivElement>document.getElementById("copy");
+    this.pop.classList.toggle("active");
+  }
+  paste(){
+    this.pop=<HTMLDivElement>document.getElementById("paste");
     this.pop.classList.toggle("active");
   }
 }

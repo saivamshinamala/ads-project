@@ -4,12 +4,12 @@
     <div class="card">
         <div class="upload-video">
             <img src="../../assets/images/create.png" alt="Play">
-            <span (click)="popUP()" class="video-thumbnail"></span>
+            <span (click)="video()" class="video-thumbnail"></span>
         </div>
-        <div (click)="popUP()" class="copyLink">
+        <div (click)="copy()" class="copyLink">
             <h3><b>COPY LINK</b></h3>
         </div>
-        <div (click)="popUP()" class="pasteLink">
+        <div (click)="paste()" class="pasteLink">
             <h3><b>PASTE LINK</b></h3>
         </div>
         <div class="activated">
@@ -18,11 +18,28 @@
     </div>
 </div>
 
-<div class="popup" id="popup-1">
+<div class="popup" id="video">
     <div class="overlay"></div>
     <div class="content">
-      <div class="close-btn" (click)="popUP()">×</div>
-      <h2><b>COPY LINK</b></h2>
-      <p>...........................................................</p>
+        <div class="close-btn" (click)="video()">×</div>
+        
+    </div>
+</div>
+
+<div class="popup" id="copy">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="close-btn" (click)="copy()">×</div>
+        <h2><b>COPY LINK</b></h2>
+        <p>...........................................................</p>
+    </div>
+</div>
+
+<div class="popup" id="paste">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="close-btn" (click)="paste()">×</div>
+        <h2><b>PASTE LINK</b></h2>
+        <p>...........................................................</p>
     </div>
 </div>
