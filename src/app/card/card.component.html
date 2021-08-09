@@ -2,9 +2,11 @@
 
 <div class="container">
     <div class="card">
-        <div class="upload-video">
-            <img src="../../assets/images/create.png" alt="Play">
-            <span (click)="video()" class="video-thumbnail"></span>
+        <div>
+            <img class="upload-video" src="../../assets/images/create.png" alt="Play">
+            <!-- <span (click)="video()" class="video-thumbnail"></span> -->
+            <img style="width: 40px; height: 40px;" class="play-button" (click)="video()" src="../../assets/images/Icon awesome-play.png" alt="cursor">
+            <img style="width: 40px; height: 40px;" class="download" (click)="video()" src="../../assets/images/Icon awesome-cloud-download-alt.png" alt="cursor">
         </div>
         <div (click)="copy()" class="copyLink">
             <h3><b>COPY LINK</b></h3>
