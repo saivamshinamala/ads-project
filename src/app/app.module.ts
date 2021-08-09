@@ -19,6 +19,7 @@ import { MatCardModule} from '@angular/material/card';
 import { SampleComponent } from './sample/sample.component';
 import { UploadDialogComponent } from './upload-dialog/upload-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CopyrightloginComponent } from './copyrightlogin/copyrightlogin.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDhH0xx3RZVVJeY1t0BGumF15A6YHaiNHI",
@@ -40,7 +41,8 @@ const firebaseConfig = {
     LoginMenuComponent,
     CardComponent,
     SampleComponent,
-    UploadDialogComponent
+    UploadDialogComponent,
+    CopyrightloginComponent
   ],
   imports: [
     BrowserModule,

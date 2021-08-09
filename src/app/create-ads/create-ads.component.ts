@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { FireauthserviceService } from '../services/fireauthservice.service';
+import { SharedService } from '../services/shared.service';
 @Component({
   selector: 'app-create-ads',
   templateUrl: './create-ads.component.html',
@@ -14,13 +15,13 @@ export class CreateAdsComponent implements OnInit {
   titleTag: string;
   budgetTitle: string;
   map = new Map<string, string>();
-  adBudget: number = 10000;
-  adViews: number = 100000;
-  customers: number = 100000;
-  appInstalls: number = 1000;
-  signUp: number = 1000;
-  sales: number = 1000;
-  calls: number = 1000;
+  adBudget: any = 10000;
+  adViews: any = 100000;
+  customers: any = 100000;
+  appInstalls: any = 1000;
+  signUp: any = 1000;
+  sales: any = 1000;
+  calls: any = 1000;
 
   txtImage: any[][] = [
     ["1. Create Ad", "../../assets/images/create.png"],
@@ -29,10 +30,19 @@ export class CreateAdsComponent implements OnInit {
   ];
 
 
-  constructor(private fireService: FireauthserviceService, private router: Router) { 
+  constructor(private fireService: FireauthserviceService, 
+              private router: Router,
+              private sharedService: SharedService) { 
     this.titleText = "Grow Your Business With Social Ads"
     this.titleTag = `Get More Sales, Customers Views,<br>Sineup, Calls, App Installs, Etc...`;
     this.budgetTitle = "Low Ad Budget High Results";
+
+    this.adViews = this.sharedService.convertNum(this.adViews);
+    this.customers = this.sharedService.convertNum(this.customers);
+    this.appInstalls = this.sharedService.convertNum(this.appInstalls);
+    this.signUp = this.sharedService.convertNum(this.signUp);
+    this.sales = this.sharedService.convertNum(this.sales);
+    this.calls = this.sharedService.convertNum(this.calls);
   }
 
   ngOnInit(): void {
@@ -59,6 +69,16 @@ export class CreateAdsComponent implements OnInit {
     this.signUp = this.tenPercent(event);
     this.sales = this.tenPercent(event);
     this.calls = this.tenPercent(event);
+    this.adViews = this.sharedService.convertNum(this.adViews);
+    this.customers = this.sharedService.convertNum(this.customers);
+    this.appInstalls = this.sharedService.convertNum(this.appInstalls);
+    this.signUp = this.sharedService.convertNum(this.signUp);
+    this.sales = this.sharedService.convertNum(this.sales);
+    this.calls = this.sharedService.convertNum(this.calls);
+  }
+
+  convertNumToInr(num: any) {
+    return this.sharedService.convertNumToInr(num);
   }
 
 

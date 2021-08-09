@@ -3,7 +3,7 @@
 nav {
     position: relative;
 
-    span {
+    div {
         position: absolute;
         margin-left: 85%;
 
@@ -13,8 +13,19 @@ nav {
             border: 1px solid $base_color;
             border-radius: 60%;
         }
+
+        ul {
+            border: 1px solid $base_color;
+
+            li {
+                text-align: center;
+                cursor: pointer;
+            }
+        }
     }
 }
+
+
 
 .nav_links_class{
     display: flex;
@@ -44,34 +55,46 @@ nav {
         border: 1px solid $base_color;
     }
 }
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        margin-top: 1em;
+        cursor: pointer;
+        height: 100%;
+        width: 100%;
+        
+    }
+}
+
 .col {
     margin: 1em 0;
 }
-.add-ad {
-    border: 2px solid $base_color !important;
-    border-radius: 15px !important;
-    width: 300px;
 
-    .video, .title, .views {
-        border-bottom: 1px solid $base_color;
-    }
-    .video, .title, .views, .promote, .delete{
+.video, .title {
+    border-bottom: 1px solid $base_color;
+    width: 100%;
+}
+.video, .title, .budget, .promote, .delete{
+    text-align: center;
+
+    p {
+        margin:  10px 0px;
         text-align: center;
-
-        p {
-            margin:  10px 0px;
-            text-align: center;
-        }
-    }
-
-    img {
-        height: 100%;
-        width: 100%;
     }
 }
 
 .container{
     min-height: 92vh;
+}
+
+.budget {
+    p, span {
+        cursor: pointer;
+    }
 }
 
 .promote {
@@ -84,11 +107,12 @@ nav {
     span {
         display: block;
         position: absolute;
-        margin-left: 80%;
+        margin-left: 150%;
         cursor: pointer;
     }
 }
 
 .delete {
     border-top: 1px solid $base_color;
+    width: 100%;
 }
