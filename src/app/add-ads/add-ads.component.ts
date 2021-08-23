@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdAdSkeleton } from '../adAdSkeleton';
+import { AdAdSkeleton } from '../interfaces/adAdSkeleton';
 
 import { MatDialog } from '@angular/material/dialog';
 import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
@@ -22,12 +22,18 @@ export class AddAdsComponent implements OnInit {
               private sharedService: SharedService) { }
 
   ngOnInit(): void {
-    this.sharedService.destEvent$.subscribe(data => {
-      this.onAddAd();
-    });
-    this.onAddAd();
-    this.onAddAd();
-    this.onAddAd();
+
+    this.sharedService.getUserAds().subscribe(res => {
+      for(let i = 0; i < res.length; i++) {
+        this.onAddAd();
+      }
+    })
+    // this.sharedService.destEvent$.subscribe(data => {
+    //   this.onAddAd();
+    // });
+    // this.onAddAd();
+    // this.onAddAd();
+    // this.onAddAd();
   }
 
   onAddAd() {

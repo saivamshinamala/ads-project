@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SharedService } from '../services/shared.service';
+import { Video } from '../interfaces/Video';
 
 @Component({
   selector: 'app-upload-dialog',
@@ -9,10 +10,22 @@ import { SharedService } from '../services/shared.service';
 })
 export class UploadDialogComponent implements OnInit {
 
-  adViews!: any;
-  adBudget!: any;
+  url: any;
+  format: any;
+
+  enableSpinner = false;
+
+  adViews!: number;
+  adBudget!: number;
   language = ["ENGLISH", "HINDI", "TELUGU"];
   languageClicked = false;
+  adTitle!: string;
+  adLink!: string;
+  adLanguage!: string;
+
+  isUploaded = false;
+  uploadResult!: string;
+
 
   constructor(private sharedService: SharedService, 
               private dialog: MatDialogRef<UploadDialogComponent>,
@@ -21,8 +34,53 @@ export class UploadDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onCreateAd() {
-    this.sharedService.onAdCreated();
+  onSelectFile(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      if(file.type.indexOf('video')> -1){
+        this.format = 'video';
+        this.enableSpinner = true;
+      }
+      reader.onload = (event) => {
+        this.url = (<FileReader>event.target).result;
+        console.log(this.url);
+        this.enableSpinner = false;
+      }
+    }
+  }
+
+  onCreateAd(data: any) {
+    console.log(data);
+    console.log("adViews ", this.adViews, " adBudget ", this.adBudget, " language ", this.adLanguage, " adtitle ", this.adTitle, " adLink ", this.adLink);
+    // this.adObject.language = this.adLanguage;
+    const adObject: Video = {
+      link: data.adLink,
+      title: data.adTitle,
+      views: (data.adBudget as number) * 10,
+      video: this.url,
+      budget: (data.adBudget as number),
+      language: this.adLanguage,
+      pastelink: []
+    };
+    this.enableSpinner = true;
+    this.sharedService.postData(adObject).subscribe( res => {
+      console.log(res);
+      this.isUploaded = true;
+      this.uploadResult = res.message;
+      this.enableSpinner = false;
+      setTimeout(() => {
+        this.closeDialog();
+    }, 5000);
+    });
+
+
+    
+
+    // this.sharedService.onAdCreated();
+    // this.sharedService.postData();
   }
 
   onValueChanged(event:number) {
@@ -41,6 +99,7 @@ export class UploadDialogComponent implements OnInit {
 
   onLangSelect(index: any) {
     console.log(index);
+    this.adLanguage = this.language[index];
     this.chooseLanguage();
   }
 

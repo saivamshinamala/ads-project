@@ -1,33 +1,40 @@
 <div class="mat-dialog-container">
-    <img class="close" (click) = "closeDialog()" src="../../assets/images/Icon open-plus.png" alt="">
-    <div class="upload-image">
-        <img src="../../assets/images/Icon metro-folder-upload.png" alt="upload image">
-        <h4>UPLOAD AD VIDEO OR PHOTO</h4>
-    </div>
-    <div class="adTitle">
-        <input type="text" name="adTitle" placeholder= "Ad Title">
-    </div>
-    <div class="adLink">
-        <input type="text" name="adTitle" placeholder= "Ad Link">
-    </div>
-    <div class="adLanguage" (click) = "chooseLanguage($event)">
-        <span class="arrow">
-            <p>Language</p>
-            <span class="material-icons">keyboard_arrow_down</span>
-        </span>
-    </div>
-    <div *ngIf = "languageClicked">
-        <p class="p-lang" *ngFor = "let lang of language; let ind = index" [innerHTML] = "lang" (click) = "onLangSelect(ind)"></p>
-    </div>
-    <div *ngIf = "!languageClicked">
-        <div class="adViews">
-            <input [(ngModel)] = "adViews" disabled placeholder="Ad Views">
+    <form #createForm = "ngForm" (ngSubmit) = "onCreateAd(createForm.value)">
+        <h2 *ngIf = "isUploaded">{{ uploadResult }}</h2>
+        <img class="close" (click) = "closeDialog()" src="../../assets/images/Icon open-plus.png" alt="">
+        <div class="upload-image">
+            <input type="file" name = "filePicker" #filePicker style="visibility: hidden;" (change)="onSelectFile($event)">
+            <video [src]="url" *ngIf="format==='video' && url" height="200" width="300" controls></video>
+            <img src="../../assets/images/Icon metro-folder-upload.png" *ngIf="!url" (click) = "filePicker.click()" alt="upload image">
+            <h4>UPLOAD AD VIDEO OR PHOTO</h4>
+            <mat-spinner *ngIf = "enableSpinner" class="spinner"></mat-spinner>
         </div>
-        <div class="adBudget">
-            <input [(ngModel)] = "adBudget" type="text" name="adbudget" id="budget" placeholder="Enter Your Budget" (ngModelChange) = "onValueChanged($event)">
+        <div class="adTitle">
+            <input type="text" [(ngModel)] = "adTitle" name="adTitle" placeholder= "Ad Title">
         </div>
-        <div class="createAd" (click) = "onCreateAd()">
-            <h3 class="btn-danger">CREATE AD</h3>
+        <div class="adLink">
+            <input type="text" [(ngModel)] = "adLink" name="adLink" placeholder= "Ad Link">
         </div>
-    </div>
+        <div class="adLanguage" (click) = "chooseLanguage($event)">
+            <span class="arrow">
+                <p *ngIf = "!adLanguage">Language</p>
+                <p *ngIf = "adLanguage"> {{ adLanguage }}</p>
+                <span class="material-icons">keyboard_arrow_down</span>
+            </span>
+        </div>
+        <div *ngIf = "languageClicked">
+            <p class="p-lang" *ngFor = "let lang of language; let ind = index" [innerHTML] = "lang" (click) = "onLangSelect(ind)"></p>
+        </div>
+        <div *ngIf = "!languageClicked">
+            <div class="adViews">
+                <input [(ngModel)] = "adViews" name = "adViews" disabled placeholder="Enter Budget to update">
+            </div>
+            <div class="adBudget">
+                <input [(ngModel)] = "adBudget" type="text" name="adBudget" id="budget" placeholder="Enter Your Budget" (ngModelChange) = "onValueChanged($event)">
+            </div>
+            <div class="createAd">
+                <button class="btn-danger">Create Ad</button>
+            </div>
+        </div>
+    </form>
 </div>

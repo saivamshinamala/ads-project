@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { AddAdsComponent } from '../add-ads/add-ads.component';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { Md5 } from 'ts-md5/dist/md5';
+import { Video } from '../interfaces/Video';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class SharedService {
   private sourceEvent = new Subject<any>();
   destEvent$ = this.sourceEvent.asObservable();
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   onAdCreated() {
     this.sourceEvent.next();
@@ -28,5 +30,18 @@ export class SharedService {
 
   convertNumToInr(num: any) {
     return "₹" + this.convertNum(num);
+  }
+
+  postData(data: any) {
+    return this.httpClient.post<{message: any}>("http://localhost:5000/ads-project-cf98e/us-central1/app/upload", data);
+  }
+
+  getUserAds() {
+    let params = new HttpParams().append("keyword", Md5.hashStr("namalasaivamshi@gmail.com"));
+    return this.httpClient.get<Video[]>("http://localhost:5000/ads-project-cf98e/us-central1/app/ads", {params: params});
+  }
+
+  getUrlFormServer() {
+    return this.httpClient.get("http://localhost:5000/ads-project-cf98e/us-central1/app/getVideo");
   }
 }

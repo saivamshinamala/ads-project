@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
@@ -20,6 +22,9 @@ import { SampleComponent } from './sample/sample.component';
 import { UploadDialogComponent } from './upload-dialog/upload-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CopyrightloginComponent } from './copyrightlogin/copyrightlogin.component';
+import { TestComponent } from './test/test.component';
+import { FileSelectDirective, FileUploadModule } from 'ng2-file-upload';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDhH0xx3RZVVJeY1t0BGumF15A6YHaiNHI",
@@ -41,6 +46,7 @@ const firebaseConfig = {
     LoginMenuComponent,
     CardComponent,
     SampleComponent,
+    TestComponent,
     UploadDialogComponent,
     CopyrightloginComponent
   ],
@@ -50,9 +56,13 @@ const firebaseConfig = {
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
     NgbModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    HttpClientModule,
+    FileUploadModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

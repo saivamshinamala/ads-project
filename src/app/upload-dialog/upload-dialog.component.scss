@@ -3,7 +3,17 @@
     box-shadow: none;
     background: white;
     color: black;
-    height: 460px;
+    min-height: 480px;
+    position: relative;
+
+    h2 {
+        color: green;
+        text-align: center;
+    }
+
+    .spinner {
+        position: absolute;
+    }
 }
 
 .close {
@@ -19,6 +29,7 @@
     justify-content: center;
     img {
         margin-bottom: 1em;
+        cursor: pointer;
     }
 }
 
