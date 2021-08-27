@@ -10,13 +10,15 @@ export class FireauthserviceService {
 
   constructor(public  afAuth:  AngularFireAuth, public  router:  Router) { }
 
-
+  async sendId(){
+    return await this.afAuth.currentUser;
+  }
 
   async signInWithGoogle() {
     return await this.afAuth.signInWithPopup(new auth.auth.GoogleAuthProvider);
   }
 
   async signOut() {
-    console.log(this.afAuth.signOut());
+    return await this.afAuth.signOut();
   }
 }

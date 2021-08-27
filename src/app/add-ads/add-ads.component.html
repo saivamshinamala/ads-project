@@ -5,7 +5,7 @@
             <img src = "../../assets/images/Icon awesome-female.png" id="dropdownBasic1" ngbDropdownToggle>
             <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <li class = "border-bottom" ngbDropdownItem>Name</li>
-                <li ngbDropdownItem>Logout</li>
+                <li (click)="logout()" ngbDropdownItem>Logout</li>
             </ul>
         </div>
     </ul>

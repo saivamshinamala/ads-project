@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SharedService } from '../services/shared.service';
 import { Video } from '../interfaces/Video';
+import { FireauthserviceService } from '../services/fireauthservice.service';
 
 @Component({
   selector: 'app-upload-dialog',
@@ -12,6 +13,7 @@ export class UploadDialogComponent implements OnInit {
 
   url: any;
   format: any;
+  id: any;
 
   enableSpinner = false;
 
@@ -28,10 +30,19 @@ export class UploadDialogComponent implements OnInit {
 
 
   constructor(private sharedService: SharedService, 
+              private fireService: FireauthserviceService,
               private dialog: MatDialogRef<UploadDialogComponent>,
               private renderer: Renderer2) { }
 
   ngOnInit(): void {
+    this.fireService.sendId().then(data=>{
+      data?.providerData.forEach((profile) =>{
+        if(profile!=null)
+          this.id=profile.email;
+        else
+          this.id="";
+      });
+    });
   }
 
   onSelectFile(event: Event) {
@@ -66,7 +77,8 @@ export class UploadDialogComponent implements OnInit {
       pastelink: []
     };
     this.enableSpinner = true;
-    this.sharedService.postData(adObject).subscribe( res => {
+    
+    this.sharedService.postData(this.id, adObject).subscribe( res => {
       console.log(res);
       this.isUploaded = true;
       this.uploadResult = res.message;

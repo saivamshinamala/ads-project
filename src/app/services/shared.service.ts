@@ -32,8 +32,9 @@ export class SharedService {
     return "₹" + this.convertNum(num);
   }
 
-  postData(data: any) {
-    return this.httpClient.post<{message: any}>("http://localhost:5000/ads-project-cf98e/us-central1/app/upload", data);
+  postData(id: any, data: any) {
+    let params=new HttpParams().append("id", id);
+    return this.httpClient.post<{message: any}>("http://localhost:5000/ads-project-cf98e/us-central1/app/upload", data, {params: params});
   }
 
   getUserAds() {

@@ -33,9 +33,9 @@ export class TestComponent implements OnInit {
       reader.onload = (event) => {
         this.url = (<FileReader>event.target).result;
         // console.log(this.url);
-        this.sharedService.postData(this.url).subscribe( res => {
-          console.log(res);
-        });
+        // this.sharedService.postData(this.url).subscribe( res => {
+        //   console.log(res);
+        // });
       }
     }
   }

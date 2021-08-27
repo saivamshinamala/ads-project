@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdAdSkeleton } from '../interfaces/adAdSkeleton';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { FireauthserviceService } from '../services/fireauthservice.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
@@ -8,7 +11,8 @@ import { SharedService } from '../services/shared.service';
 @Component({
   selector: 'app-add-ads',
   templateUrl: './add-ads.component.html',
-  styleUrls: ['./add-ads.component.scss']
+  styleUrls: ['./add-ads.component.scss'],
+  providers: [AngularFireAuth, FireauthserviceService]
 })
 export class AddAdsComponent implements OnInit {
 
@@ -19,7 +23,9 @@ export class AddAdsComponent implements OnInit {
 
 
   constructor(private dialog: MatDialog, 
-              private sharedService: SharedService) { }
+              private sharedService: SharedService,
+              private fireService: FireauthserviceService, 
+              private router: Router) { }
 
   ngOnInit(): void {
 
@@ -28,12 +34,6 @@ export class AddAdsComponent implements OnInit {
         this.onAddAd();
       }
     })
-    // this.sharedService.destEvent$.subscribe(data => {
-    //   this.onAddAd();
-    // });
-    // this.onAddAd();
-    // this.onAddAd();
-    // this.onAddAd();
   }
 
   onAddAd() {
@@ -66,4 +66,10 @@ export class AddAdsComponent implements OnInit {
     return this.sharedService.convertNumToInr(num);
   }
 
+  logout(){
+    const result = this.fireService.signOut();
+    result.then(() => {
+      this.router.navigateByUrl("");
+    });
+  }
 }

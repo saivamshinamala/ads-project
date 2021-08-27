@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FireauthserviceService } from '../services/fireauthservice.service';
 import { SharedService } from '../services/shared.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-promote-ads',
   templateUrl: './promote-ads.component.html',
-  styleUrls: ['./promote-ads.component.scss']
+  styleUrls: ['./promote-ads.component.scss'],
+  providers: [FireauthserviceService, AngularFireAuth]
 })
 export class PromoteAdsComponent implements OnInit {
 
@@ -48,7 +50,7 @@ export class PromoteAdsComponent implements OnInit {
   onSignInWithGoogle() {
     const result = this.fireService.signInWithGoogle();
     result.then( () => {
-      this.router.navigateByUrl("card");
+      this.router.navigateByUrl("promote-ad");
     });
   }
 
