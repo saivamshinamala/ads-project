@@ -25,6 +25,7 @@ import { CopyrightloginComponent } from './copyrightlogin/copyrightlogin.compone
 import { TestComponent } from './test/test.component';
 import { FileSelectDirective, FileUploadModule } from 'ng2-file-upload';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDhH0xx3RZVVJeY1t0BGumF15A6YHaiNHI",
@@ -59,6 +60,7 @@ const firebaseConfig = {
     AngularFireAuthModule,
     NgbModule,
     BrowserAnimationsModule,
+    ClipboardModule,
     MatProgressSpinnerModule,
     MatDialogModule,
     HttpClientModule,

@@ -25,7 +25,17 @@ nav {
     }
 }
 
+.container {
+    position: relative;
+}
 
+.spinner {
+    position: absolute;
+    left: 50%;
+    z-index: 1;
+    top: 25vh !important;
+    bottom: auto;
+  }
 
 .nav_links_class{
     display: flex;
@@ -61,12 +71,11 @@ nav {
     justify-content: center;
     align-items: center;
 
-    img {
+    video {
         margin-top: 1em;
         cursor: pointer;
         height: 100%;
         width: 100%;
-        
     }
 }
 

@@ -7,6 +7,8 @@ import { FireauthserviceService } from '../services/fireauthservice.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
 import { SharedService } from '../services/shared.service';
+import { Video } from '../interfaces/Video';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-ads',
@@ -17,36 +19,33 @@ import { SharedService } from '../services/shared.service';
 export class AddAdsComponent implements OnInit {
 
   plusImgPath: string = "../../assets/images/Icon open-plus.png";
-  adsArray: AdAdSkeleton[] = [];
+  adsArray: Video[] = [];  displayName!: string;
+  enableSpinner = true;
 
 
-
+  clickEventsubscription:Subscription;
 
   constructor(private dialog: MatDialog, 
               private sharedService: SharedService,
               private fireService: FireauthserviceService, 
-              private router: Router) { }
+              private router: Router) {
+
+              this.clickEventsubscription = this.sharedService.getRequestToReload().subscribe(()=>{
+                this.getAdsToUpdateUI();
+              });
+            }
 
   ngOnInit(): void {
-
-    this.sharedService.getUserAds().subscribe(res => {
-      for(let i = 0; i < res.length; i++) {
-        this.onAddAd();
-      }
-    })
+    this.displayName = localStorage.getItem("name") as string;
+    this.getAdsToUpdateUI();
   }
 
-  onAddAd() {
-    let adObject: AdAdSkeleton  = {
-      adTitle: "Title",
-      adVideoPath: "../../assets/images/create.png",
-      promote: "PROMOTE",
-      adBudget: 10000,
-      displayDelete: false,
-      displayPromote: false
-    };
-    this.adsArray.push(adObject);
-    this.dialog.closeAll();
+  getAdsToUpdateUI() {
+    this.sharedService.getUserAds(localStorage.getItem("id")).subscribe(res => {
+      console.log("result = ", res.Ads);
+      this.adsArray = res.Ads
+      this.enableSpinner = false;
+    });
   }
 
   onPlusClicked() {
@@ -69,7 +68,9 @@ export class AddAdsComponent implements OnInit {
   logout(){
     const result = this.fireService.signOut();
     result.then(() => {
-      this.router.navigateByUrl("");
+      localStorage.removeItem("id");
+      localStorage.removeItem("name");
+      this.router.navigateByUrl("/");
     });
   }
 }

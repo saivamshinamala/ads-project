@@ -1,21 +1,24 @@
 <app-login-menu></app-login-menu>
 
 <div class="container">
-    <div class="card">
-        <div>
-            <img class="upload-video" src="../../assets/images/create.png" alt="Play">
-            <!-- <span (click)="video()" class="video-thumbnail"></span> -->
-            <img style="width: 40px; height: 40px;" class="play-button" (click)="video()" src="../../assets/images/Icon awesome-play.png" alt="cursor">
-            <img style="width: 40px; height: 40px;" class="download" (click)="video()" src="../../assets/images/Icon awesome-cloud-download-alt.png" alt="cursor">
-        </div>
-        <div (click)="copy()" class="copyLink">
-            <h3><b>COPY LINK</b></h3>
-        </div>
-        <div (click)="paste()" class="pasteLink">
-            <h3><b>PASTE LINK</b></h3>
-        </div>
-        <div class="activated">
-            <h2 style="color: rgb(42, 185, 42);"><b>ACTIVATED</b></h2> 
+    <mat-spinner *ngIf = "enableSpinner" class="spinner"></mat-spinner>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-3">
+        <div class="col user-box" *ngFor = "let item of ads; let ind = index">
+            <div class="card shadow-sm">
+                <video [src] = "item.video" class="upload-video"> </video>
+                <!-- <span (click)="video()" class="video-thumbnail"></span> -->
+                <img style="width: 40px; height: 40px;" class="play-button" (click)="video(item.video)" src="../../assets/images/Icon awesome-play.png" alt="cursor">
+                <img style="width: 40px; height: 40px;" class="download"  src="../../assets/images/Icon awesome-cloud-download-alt.png" alt="cursor">
+            </div>
+            <div (click)="copy(item.link)" class="copyLink">
+                <h3><b>COPY LINK</b></h3>
+            </div>
+            <div (click)="paste()" class="pasteLink">
+                <h3><b>PASTE LINK</b></h3>
+            </div>
+            <div class="activated">
+                <h2 style="color: rgb(42, 185, 42);"><b>ACTIVATED</b></h2> 
+            </div>
         </div>
     </div>
 </div>
@@ -23,7 +26,8 @@
 <div class="popup" id="video">
     <div class="overlay"></div>
     <div class="content">
-        <div class="close-btn" (click)="video()">×</div>
+        <video [src] = "videoUrl" controls></video>
+        <div class="close-btn" (click) = "close()" >×</div>
         
     </div>
 </div>
@@ -31,9 +35,10 @@
 <div class="popup" id="copy">
     <div class="overlay"></div>
     <div class="content">
-        <div class="close-btn" (click)="copy()">×</div>
+        <div class="close-btn" (click)="close()">×</div>
         <h2><b>COPY LINK</b></h2>
-        <p>...........................................................</p>
+        <textarea id="clipboard-example-textarea" cols="50" rows="5" [(ngModel)]="copyLink"></textarea>
+        <button [cdkCopyToClipboard]="copyLink">Copy to clipboard</button>
     </div>
 </div>
 

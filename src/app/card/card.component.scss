@@ -2,6 +2,15 @@
 
 .container{
   min-height: 91vh;
+  position: relative;
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  z-index: 1;
+  top: 25vh !important;
+  bottom: auto;
 }
 
 // .video-thumbnail {
@@ -27,51 +36,78 @@
 
 .upload-video{
     position: relative;
-    top: 0;
-    left: 0;
-    //z-index: 1;
 }
 .play-button{
     position: absolute;
     cursor: pointer;
-    top: 60px;
-    left: 130px;
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: auto;
     opacity: 0.9;
-    //z-index: 2;
 }
 .download{
     position: absolute;
     cursor: pointer;
-    top: 110px;
-    left: 250px;
+    top: 70%;
+    left: 85%;
     opacity: 0.9;
 }
 
+// .user-box {
+//   margin: 1em;
+//     background-color: #fff;
+//     //border: 1px solid $base-color;
+//     border-radius: 15px;
+//     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+//     overflow: hidden;
+//     img{
+//         width: 100%;
+//         height: 100%;
+//     }
+//     .upload-video, .copyLink, .pasteLink, .activated{
+//         text-align: center;
+//         h2, h3{
+//             margin:  10px 0px;
+//             text-align: center;
+//         }
+//     }
+//     .upload-video, .copyLink, .pasteLink{
+//         border-bottom: 1px solid $base-color;
+//     }
+//     .copyLink, .pasteLink{
+//         cursor: pointer;
+//     }
+// }
+
+
 .card {
-    margin: 50px;
-    background-color: #fff;
-    //border: 1px solid $base-color;
-    border-radius: 15px;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    width: 300px;
-    img{
-        width: 100%;
-        height: 100%;
-    }
-    .upload-video, .copyLink, .pasteLink, .activated{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+
+  video {
+      margin-top: 1em;
+      cursor: pointer;
+      height: 100%;
+      width: 100%;
+  }
+  
+}
+
+.upload-video, .copyLink, .pasteLink, .activated{
+  text-align: center;
+    h2, h3{
+        margin:  10px 0px;
         text-align: center;
-        h2, h3{
-            margin:  10px 0px;
-            text-align: center;
-        }
     }
-    .upload-video, .copyLink, .pasteLink{
-        border-bottom: 1px solid $base-color;
-    }
-    .copyLink, .pasteLink{
-        cursor: pointer;
-    }
+}
+.upload-video, .copyLink, .pasteLink{
+  border-bottom: 1px solid $base-color;
+}
+.copyLink, .pasteLink{
+  cursor: pointer;
 }
 
 .popup .overlay {
@@ -100,6 +136,11 @@
   box-sizing:border-box;
   border-radius: 10px;
   font-family:"Open Sans",sans-serif;
+
+  video {
+    width: 100%;
+    height: 100%;
+  }
 }
  
 .popup .close-btn {
@@ -125,4 +166,8 @@
 .popup.active .content {
   transition:all 300ms ease-in-out;
   transform:translate(-50%,-50%) scale(1);
+}
+
+textarea {
+  text-align: center;
 }

@@ -4,7 +4,7 @@
         <div ngbDropdown>
             <img src = "../../assets/images/Icon awesome-female.png" id="dropdownBasic1" ngbDropdownToggle>
             <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <li class = "border-bottom" ngbDropdownItem>Name</li>
+                <li class = "border-bottom" ngbDropdownItem [innerHTML] = "displayName"></li>
                 <li (click)="logout()" ngbDropdownItem>Logout</li>
             </ul>
         </div>
@@ -16,17 +16,18 @@
 
 
 <div class="container">
+    <mat-spinner *ngIf = "enableSpinner" class="spinner"></mat-spinner>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" *ngFor = "let item of adsArray; let ind = index">
             <div class="card shadow-sm">
                 <div class="video">
-                    <img [src]="item.adVideoPath" alt="">
+                    <video [src]="item.video" controls></video>
                 </div>
                 <div class="title">
-                    <p [innerHTML] = "item.adTitle"></p>
+                    <p [innerHTML] = "item.title"></p>
                 </div>
                 <div class="budget">
-                    <p *ngIf = "!item.displayPromote" (click) = "toggleBudgetPromote(ind)" [innerHTML] = "convertNumToInr(item.adBudget)"></p>
+                    <p *ngIf = "!item.displayPromote" (click) = "toggleBudgetPromote(ind)" [innerHTML] = "convertNumToInr(item.budget)"></p>
                     <div *ngIf = "item.displayPromote" class="promote">
                         <p (click) = "toggleBudgetPromote(ind)" [innerHTML] = "item.promote"></p>
                         <span class="material-icons" (click) = "onThreeDotsClicked(ind)">

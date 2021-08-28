@@ -58,7 +58,16 @@ export class CreateAdsComponent implements OnInit {
   onSignInWithGoogle() {
     const result = this.fireService.signInWithGoogle();
     result.then(() => {
-      this.router.navigateByUrl("add-ad");
+      this.fireService.sendId().then(data=>{
+        data?.providerData.forEach((profile) =>{
+          if(profile!=null) {
+            localStorage.setItem("id", profile.email as string);
+            localStorage.setItem("name", profile.displayName as string);
+        }
+        });
+      }).then( res => {
+        this.router.navigateByUrl("add-ad");
+      });
     });
   }
 

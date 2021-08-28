@@ -11,14 +11,19 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class LoginMenuComponent implements OnInit {
 
+  displayName!: string;
+
   constructor( private fireService: FireauthserviceService,
                private router: Router) { }
 
   ngOnInit(): void {
+    this.displayName = localStorage.getItem("name") as string;
   }
 
   logout(){
     const result = this.fireService.signOut();
+    localStorage.removeItem("id");
+    localStorage.removeItem("name");
     result.then(() => {
       this.router.navigateByUrl("promote");
     });

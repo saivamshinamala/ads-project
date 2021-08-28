@@ -3,6 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { SharedService } from '../services/shared.service';
 import { Video } from '../interfaces/Video';
 import { FireauthserviceService } from '../services/fireauthservice.service';
+import { environment } from 'src/environments/environment';
+import { AddAdsComponent } from '../add-ads/add-ads.component';
 
 @Component({
   selector: 'app-upload-dialog',
@@ -35,14 +37,6 @@ export class UploadDialogComponent implements OnInit {
               private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    this.fireService.sendId().then(data=>{
-      data?.providerData.forEach((profile) =>{
-        if(profile!=null)
-          this.id=profile.email;
-        else
-          this.id="";
-      });
-    });
   }
 
   onSelectFile(event: Event) {
@@ -66,7 +60,6 @@ export class UploadDialogComponent implements OnInit {
   onCreateAd(data: any) {
     console.log(data);
     console.log("adViews ", this.adViews, " adBudget ", this.adBudget, " language ", this.adLanguage, " adtitle ", this.adTitle, " adLink ", this.adLink);
-    // this.adObject.language = this.adLanguage;
     const adObject: Video = {
       link: data.adLink,
       title: data.adTitle,
@@ -74,25 +67,23 @@ export class UploadDialogComponent implements OnInit {
       video: this.url,
       budget: (data.adBudget as number),
       language: this.adLanguage,
-      pastelink: []
+      pastelink: [],
+      promote: "PROMOTE",
+      displayDelete: "",
+      displayPromote: "",
     };
     this.enableSpinner = true;
     
-    this.sharedService.postData(this.id, adObject).subscribe( res => {
+    this.sharedService.postData(localStorage.getItem("id"), adObject).subscribe( res => {
       console.log(res);
       this.isUploaded = true;
       this.uploadResult = res.message;
       this.enableSpinner = false;
       setTimeout(() => {
         this.closeDialog();
-    }, 5000);
+        this.sharedService.sendRequestToReload();
+    }, 2000);
     });
-
-
-    
-
-    // this.sharedService.onAdCreated();
-    // this.sharedService.postData();
   }
 
   onValueChanged(event:number) {

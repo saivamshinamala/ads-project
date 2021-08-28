@@ -39,7 +39,7 @@
             <div ngbDropdown class="d-inline-block">
                 <img src="../../assets/images/Icon awesome-female.png" class="btn circle" id="dropdownBasic1" ngbDropdownToggle>
                 <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <li ngbDropdownItem>Mr. Nithish</li>
+                    <li ngbDropdownItem [innerHTML] = "displayName"></li>
                     <li ngbDropdownItem>ADD BANK</li>
                     <li ngbDropdownItem>PAYMENT HISTORY</li>
                     <li (click)="logout()" ngbDropdownItem>LOGOUT</li>
