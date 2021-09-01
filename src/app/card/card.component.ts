@@ -3,6 +3,8 @@ import { SharedService } from '../services/shared.service';
 import { FireauthserviceService } from '../services/fireauthservice.service';
 import { Video } from '../interfaces/Video';
 import { Ads } from '../interfaces/ads';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-card',
@@ -26,20 +28,27 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
     console.log("Hello world");
     this.sharedService.getAllAds()
+    .pipe(map(videos => {
+      return videos.map(video => {
+        console.log(video.creatorId);
+        return {
+          creatorId: video.creatorId,
+          videoid: video._id,
+          link: environment.base_url + "redirect?videoid="+  video._id,
+          title: video.title,
+          views: video.views,
+          video: video.video,
+          budget: video.budget,
+          language: video.language,
+          pastelink: video.pastelink
+          }
+      })
+    }))
     .subscribe(data => {
-      console.log(data.length);
-      data.forEach(ele =>  {
-        this.adVideos = ele.Ads;
-        for(let video of this.adVideos) {
-          this.ads.push(video);
-        }
-        this.enableSpinner = false;
-      });
-
-      for(let video of this.ads) {
-        console.log(video);
-      }
-      
+      console.log(data);
+      this.ads = data;
+      this.enableSpinner = false;   
+      console.log(data);
     });
   }
 

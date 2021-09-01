@@ -3,8 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { SharedService } from '../services/shared.service';
 import { Video } from '../interfaces/Video';
 import { FireauthserviceService } from '../services/fireauthservice.service';
-import { environment } from 'src/environments/environment';
-import { AddAdsComponent } from '../add-ads/add-ads.component';
+import { v4 as uuid } from 'uuid';
+import { PostVideo } from '../interfaces/postvideo';
 
 @Component({
   selector: 'app-upload-dialog',
@@ -60,21 +60,20 @@ export class UploadDialogComponent implements OnInit {
   onCreateAd(data: any) {
     console.log(data);
     console.log("adViews ", this.adViews, " adBudget ", this.adBudget, " language ", this.adLanguage, " adtitle ", this.adTitle, " adLink ", this.adLink);
-    const adObject: Video = {
+    console.log("creator id = ", localStorage.getItem("userId"));
+    const adObject: PostVideo = {
+      creatorId: localStorage.getItem("userId") as string,
       link: data.adLink,
       title: data.adTitle,
       views: (data.adBudget as number) * 10,
       video: this.url,
       budget: (data.adBudget as number),
       language: this.adLanguage,
-      pastelink: [],
-      promote: "PROMOTE",
-      displayDelete: "",
-      displayPromote: "",
+      pastelink: []
     };
     this.enableSpinner = true;
     
-    this.sharedService.postData(localStorage.getItem("id"), adObject).subscribe( res => {
+    this.sharedService.postData(localStorage.getItem("userId"), adObject).subscribe( res => {
       console.log(res);
       this.isUploaded = true;
       this.uploadResult = res.message;

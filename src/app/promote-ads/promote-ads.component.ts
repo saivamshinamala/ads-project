@@ -49,8 +49,17 @@ export class PromoteAdsComponent implements OnInit {
 
   onSignInWithGoogle() {
     const result = this.fireService.signInWithGoogle();
-    result.then( () => {
-      this.router.navigateByUrl("promote-ad");
+    result.then(() => {
+      this.fireService.sendId().then(data=>{
+        data?.providerData.forEach((profile) =>{
+          if(profile!=null) {
+            localStorage.setItem("userId", profile.email as string);
+            localStorage.setItem("name", profile.displayName as string);
+        }
+        });
+      }).then( res => {
+        this.router.navigateByUrl("promote-ad");
+      });
     });
   }
 

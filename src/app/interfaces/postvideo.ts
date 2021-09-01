@@ -1,5 +1,5 @@
-export interface Video {
-   videoid: any;
+export interface PostVideo {
+   creatorId: string;
    video: string;
    title: string;
    link: string;
@@ -7,6 +7,4 @@ export interface Video {
    views: number;
    budget: number;
    pastelink: string[];
-   displayDelete: boolean;
-   displayPromote: boolean;
-};
+}

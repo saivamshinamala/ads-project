@@ -9,6 +9,8 @@ import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component'
 import { SharedService } from '../services/shared.service';
 import { Video } from '../interfaces/Video';
 import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-ads',
@@ -19,7 +21,8 @@ import { Subscription } from 'rxjs';
 export class AddAdsComponent implements OnInit {
 
   plusImgPath: string = "../../assets/images/Icon open-plus.png";
-  adsArray: Video[] = [];  displayName!: string;
+  adsArray: any[] = [];  
+  displayName!: string;
   enableSpinner = true;
 
 
@@ -41,9 +44,25 @@ export class AddAdsComponent implements OnInit {
   }
 
   getAdsToUpdateUI() {
-    this.sharedService.getUserAds(localStorage.getItem("id")).subscribe(res => {
-      console.log("result = ", res.Ads);
-      this.adsArray = res.Ads
+    this.sharedService.getUserAds(localStorage.getItem("userId"))
+    .pipe(map(videos => {
+      return videos.map(video => {
+        return {
+          creatorId: video.creatorId,
+          videoid: video._id,
+          link: environment.base_url + "redirect?videoid="+  video._id,
+          title: video.title,
+          views: video.views,
+          video: video.video,
+          budget: video.budget,
+          language: video.language,
+          pastelink: video.pastelink
+          }
+      })
+    }))
+    .subscribe(res => {
+      console.log("result = ", res);
+      this.adsArray = res
       this.enableSpinner = false;
     });
   }
@@ -68,7 +87,7 @@ export class AddAdsComponent implements OnInit {
   logout(){
     const result = this.fireService.signOut();
     result.then(() => {
-      localStorage.removeItem("id");
+      localStorage.removeItem("userId");
       localStorage.removeItem("name");
       this.router.navigateByUrl("/");
     });

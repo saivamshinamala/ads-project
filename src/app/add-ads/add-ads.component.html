@@ -29,7 +29,7 @@
                 <div class="budget">
                     <p *ngIf = "!item.displayPromote" (click) = "toggleBudgetPromote(ind)" [innerHTML] = "convertNumToInr(item.budget)"></p>
                     <div *ngIf = "item.displayPromote" class="promote">
-                        <p (click) = "toggleBudgetPromote(ind)" [innerHTML] = "item.promote"></p>
+                        <p (click) = "toggleBudgetPromote(ind)">PROMOTE</p>
                         <span class="material-icons" (click) = "onThreeDotsClicked(ind)">
                             more_vert
                         </span>

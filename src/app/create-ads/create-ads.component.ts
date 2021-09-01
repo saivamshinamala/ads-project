@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { FireauthserviceService } from '../services/fireauthservice.service';
 import { SharedService } from '../services/shared.service';
+import { Md5 } from 'ts-md5/dist/md5';
+
 @Component({
   selector: 'app-create-ads',
   templateUrl: './create-ads.component.html',
@@ -61,7 +63,7 @@ export class CreateAdsComponent implements OnInit {
       this.fireService.sendId().then(data=>{
         data?.providerData.forEach((profile) =>{
           if(profile!=null) {
-            localStorage.setItem("id", profile.email as string);
+            localStorage.setItem("userId", Md5.hashStr(profile.email  as string));
             localStorage.setItem("name", profile.displayName as string);
         }
         });

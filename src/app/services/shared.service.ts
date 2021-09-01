@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Md5 } from 'ts-md5/dist/md5';
 import { Ads } from '../interfaces/ads';
 import { PromoteAds } from '../interfaces/promoteAds';
+import { Video } from '../interfaces/Video';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,10 @@ export class SharedService {
 
   private subject = new Subject<any>();
 
-  private base_url = "http://localhost:5000/ads-project-cf98e/us-central1/app/";
+   
 
+  // private base_url = "http://localhost:5000/ads-project-cf98e/us-central1/app/";
+  private base_url = environment.base_url;
 
   sendRequestToReload() {
     this.subject.next();
@@ -56,8 +60,8 @@ export class SharedService {
 
   getUserAds(id: any) {
     console.log("id = ", id);
-    let params = new HttpParams().append("id", id);
-    return this.httpClient.get<Ads>(this.base_url + "user-ads", {params: params});
+    let params = new HttpParams().append("creatorId", id);
+    return this.httpClient.get<ServerVideo[]>(this.base_url + "user-ads", {params: params});
   }
 
   getUrlFormServer() {
@@ -65,6 +69,18 @@ export class SharedService {
   }
 
   getAllAds() {
-    return this.httpClient.get<PromoteAds[]>(this.base_url + "getAds");
+    return this.httpClient.get<ServerVideo[]>(this.base_url + "getAds");
   }
 }
+
+interface ServerVideo {
+  creatorId: String;
+  _id: String;
+  video: String;
+  title: String;
+  link: String;
+  language: String;
+  views: Number;
+  budget: Number;
+  pastelink: String[]
+};
